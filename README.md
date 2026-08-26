@@ -36,3 +36,13 @@ Take the logic already solved in step 4 and move it to a reusable React componen
 
 8. Document the solution the way an engineer would when handing off their work
 A README with install/run instructions, a log of what AI assistance was used and how it was verified, and evidence (screenshots or links) of each component working. This isn't an extra — it's what lets someone else (or your evaluator) trust and reproduce what you built.
+
+## Evidence
+
+Screenshots supporting this delivery are kept in the `img/` folder at the root of the repository:
+
+- `img/soql-query-result.png` — SOQL query run from the terminal, confirming the org connection.
+- `img/account-explorer-lwc.png` — Account Explorer LWC deployed on a Salesforce Lightning page.
+- `img/account-explorer-react-local.png` — Account Explorer React app running locally.
+- `img/trailhead-profile.png` — Trailhead profile overview.
+- `img/trailhead-badges.png` — Completed Trailhead badges.
