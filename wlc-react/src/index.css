@@ -1,0 +1,8 @@
+/* Reset mínimo — MUI's CssBaseline (montado en App.jsx) se encarga del resto. */
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
