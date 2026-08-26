@@ -7,20 +7,19 @@ const COLUMNS = [
     { label: 'Teléfono', fieldName: 'Phone', type: 'phone' }
 ];
 
-const SEARCH_DELAY = 300; // ms de espera tras dejar de teclear, antes de consultar el servidor
+const SEARCH_DELAY = 300;
 
 export default class AccountExplorer extends LightningElement {
     columns = COLUMNS;
 
-    inputValue = '';   // lo que el usuario ve mientras escribe (feedback inmediato)
-    searchTerm = '';    // lo que realmente se manda al servidor (con debounce)
+    inputValue = '';
+    searchTerm = '';
 
     accounts = [];
     error;
     isLoading = true;
     searchTimeout;
 
-    // Reactivo: cada vez que cambia searchTerm, se dispara una nueva consulta al servidor (Apex/SOQL).
     @wire(getAccounts, { searchTerm: '$searchTerm' })
     wiredAccounts({ data, error }) {
         this.isLoading = false;
@@ -59,8 +58,6 @@ export default class AccountExplorer extends LightningElement {
         this.inputValue = event.target.value;
         this.isLoading = true;
 
-        // Debounce: evita mandar una consulta por cada tecla presionada.
-        // Solo se consulta el servidor 300ms después de que el usuario deja de escribir.
         clearTimeout(this.searchTimeout);
         this.searchTimeout = setTimeout(() => {
             this.searchTerm = this.inputValue;
