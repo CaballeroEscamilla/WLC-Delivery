@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title="Account Explorer" icon-name="standard:account">
+        <div class="slds-p-horizontal_small slds-p-bottom_small">
+            <lightning-input
+                type="search"
+                label="Buscar por nombre o industria"
+                value={inputValue}
+                onchange={handleSearchChange}
+                class="slds-m-bottom_small">
+            </lightning-input>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Buscando cuentas..." size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">Ocurrió un error al cargar las cuentas.</p>
+            </template>
+
+            <template if:true={showEmptyState}>
+                <div class="slds-align_absolute-center slds-p-vertical_large">
+                    <div class="slds-text-align_center">
+                        <lightning-icon
+                            icon-name="utility:search"
+                            size="large"
+                            class="empty-state__icon">
+                        </lightning-icon>
+                        <h3 class="slds-text-heading_small slds-p-top_small">{emptyStateTitle}</h3>
+                        <p class="slds-text-body_regular slds-text-color_weak slds-p-top_x-small">
+                            {emptyStateMessage}
+                        </p>
+                        <template if:true={showClearButton}>
+                            <lightning-button
+                                label="Limpiar búsqueda"
+                                variant="brand-outline"
+                                onclick={handleClearSearch}
+                                class="slds-p-top_small">
+                            </lightning-button>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={hasResults}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={accounts}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
+</template>
